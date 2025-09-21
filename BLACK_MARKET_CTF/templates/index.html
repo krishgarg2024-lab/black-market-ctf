@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Black Market</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>The Black Market</h1>
+    <p>Welcome to our exclusive, off-the-grid marketplace. We have some... unique items for sale.</p>
+    
+    <div class="items-list">
+        <h2>Items for Sale</h2>
+        <ul>
+            {% for id, item in items.items() %}
+                <li>
+                    <strong>{{ item.name }}</strong> - ${{ item.price }}
+                    <a href="{{ url_for('add_item', item_id=id) }}">Add to Cart</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ url_for('view_cart') }}">View Your Cart</a>
+</body>
+</html>

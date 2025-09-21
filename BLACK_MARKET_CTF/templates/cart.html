@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Your Cart</h1>
+    {% if not cart_items %}
+        <p>Your cart is empty.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Weight (kg)</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item_id, quantity in cart_items.items() %}
+                    <tr>
+                        <td>{{ items[item_id].name }}</td>
+                        <td>${{ items[item_id].price }}</td>
+                        <td>{{ items[item_id].weight }}</td>
+                        <td>{{ quantity }}</td>
+                        <td><a href="{{ url_for('remove_item', item_id=item_id) }}">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total before shipping: ${{ (total - shipping)|round(2) }}</p>
+        <p>Shipping cost: ${{ shipping|round(2) }}</p>
+        <p><strong>Final Total: ${{ total|round(2) }}</strong></p>
+        <a href="{{ url_for('checkout') }}">Proceed to Checkout</a>
+    {% endif %}
+    <br><a href="{{ url_for('index') }}">Continue Shopping</a>
+</body>
+</html>

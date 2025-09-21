@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Success!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Payment Approved</h1>
+    <p>Your 'purchase' has been processed. The credentials you requested are below:</p>
+    <div class="flag-container">
+        <h2>{{ flag }}</h2>
+    </div>
+    <p>Thank you for using our service. Now get out of here.</p>
+</body>
+</html>
